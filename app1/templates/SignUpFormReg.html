@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: powderblue;
+}
+.container {
+    padding-right: 300px;
+    padding-left: 300px;
+    padding-top: 50px;
+  background-color: skyblue;
+}
+
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 15px 0 30px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.registerbtn {
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+
+.colm-logo img {
+    position: fixed; top: 0px; right: 0px;
+    max-width: 100px;
+}
+.colm-logo {
+    flex: 0 0 50%;
+    text-align: right top;
+
+
+
+</style>
+</head>
+
+
+<body>
+
+{% if message %}
+<script>
+    alert('{{message}}');
+</script>
+{% endif %}
+
+<form action="/loadform/" method="post">
+      {% csrf_token %}
+
+  <div class="container">
+
+  <div>
+  <center>  <h1>  Patient details Form
+    GENICS
+    <div class="colm-logo">
+            {% load static %}<img src= "{% static 'img/Logo.png' %}" alt="Logo">
+        </div>
+
+  </h1> </center>
+  <hr>
+  <label> Firstname </label> 
+<input type="text" name="fname" placeholder= "Firstname" size="15" required /> 
+<label> Lastname: </label>  
+<input type="text" name="lname" placeholder="Lastname" size="15"required /> 
+</div>
+<div>
+
+<div>
+<label>
+Date of Birth
+</label>
+<input type="date" id="birthday" name="dob">
+
+
+</div>
+
+
+<div>
+<label> 
+Blood Group :
+</label> 
+<select name="bg">
+<option value="Blood Group">Blood Group</option>
+<option value="A-">A+</option>
+<option value="A+">A-</option>
+<option value="B-">B-</option>
+<option value="B+">B+</option>
+<option value="O-">O-</option>
+<option value="O+">O+</option>
+<option value="AB-">AB-</option>
+<option value="AB+">AB+</option>
+<option value="Bombay Blood Group (rare)">Bomaby_Blood_group</option>
+</select>
+</div>
+
+
+<div>
+<label> 
+Gender :
+</label><br>
+<select name="gender">
+<option value="Gender">Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Prefer not to say">Prefer not to say</option>
+<option value="Others">Others</option>
+</select>
+</div>
+
+<label> 
+Phone :
+</label>
+<input type="text" name="phone" placeholder="phone no." size="10"/ required> 
+
+<div>
+<label>
+Marital status
+</label><br>
+<select name="mstatus">
+<option value="Marital Status">Marital Status</option>
+<option value="Married">Married</option>
+<option value="Unmarried">Unmarried</option>
+<option value="Prefer not to say">Prefer not to say</option>
+<option value="Others">Others</option>
+</select>
+</div>
+
+<div>
+<label>
+Current Address :
+</label>
+<textarea cols="80" rows="5" placeholder="Current Address" value="address"></textarea>
+</div>
+
+
+<div class="registerbtn">
+<button type="submit">Continue</button>
+</div>
+</div>
+</form>
+
+
+</body>
+</html>

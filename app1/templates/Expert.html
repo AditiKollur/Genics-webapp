@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+         input{
+            margin-top:20px;
+            height: 30px;
+             padding: 12px 20px;
+             width: 150px;
+             margin: 8px 0;
+            border-radius: 5px;
+        }
+        input[type="submit"]{
+            background-color: rgba(7, 179, 185, 0.753);
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+        }
+        button{
+            background-color: rgba(7, 179, 185, 0.753);
+            color: white;
+            width: 150px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+        }
+    .colm-logo img {
+        position: fixed; top: 0px; right: 0px;
+        max-width: 200px;
+    }
+    .colm-logo {
+        flex: 0 50% 50%;
+        text-align: right top;}
+    .css-serial {
+      counter-reset: serial-number;  /* Set the serial number counter to 0 */
+    }
+
+    .css-serial td:first-child:before {
+      counter-increment: serial-number;  /* Increment the serial number counter */
+      content: counter(serial-number);  /* Display the counter */
+    }
+    .table {
+        margin: 0 auto;
+    }
+    body{
+      font-family: Calibri, Helvetica, sans-serif;
+      background-color: pink;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        margin-left:-5px;
+        margin-right:-5px;
+    }
+  
+    .column {
+        float: left;
+        width: 50%;
+        padding: 5px;
+    }
+
+/* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+</style>
+</head>
+
+<body> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<h1>
+Report
+<div class="colm-logo">
+    {% load static %}<img src= "{% static 'img/Logo.png' %}" alt="Logo">
+</div>
+</h1>
+
+<h2>Researcher user</h2>
+
+<h3>Here is the report of your data</h3>
+<br>
+
+<div class="row">
+<div class="container text-center align-items-center d-flex">
+<table class="table table-md css-serial table-hover table-bordered w-auto">
+  <thead class="table-light">
+    <tr>
+        <th scope="col">serial Number</th>
+        <th scope="col">Chromosome Number</th>
+        <th scope="col">Gene name</th>
+        <th scope="col">Start index of base pair</th>
+        <th scope="col">End index of base pair</th>
+        <th scope="col">Disease</th>       
+        <th scope="col">Uninterrupted CAG reptitions</th>
+        <th scope="col">Risk for patient</th>
+        <th scope="col">Risk for Future generation</th>
+    </tr>
+  </thead>
+  <tbody class="css-serial table-info table-group-divider">
+    {% for i in report %}
+        <tr>
+            <td></td>
+            {% for k in i %}
+              <td>{{k}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<br>
+
+<form action="/downloadExpert/" method="post">
+    {% csrf_token %}
+<button type="submit"> Download</button>
+</form>
+<br>
+
+<div align="right">
+<button type="button" onclick="location.href='{% url 'log' %}' ">Logout</button>
+</div>
+<div class="disclaimer">The information provided above is based on the data uploaded by user</div>
+
+</body>
+</html>
